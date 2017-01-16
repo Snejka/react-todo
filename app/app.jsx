@@ -19,6 +19,6 @@ ReactDOM.render(
   //       <IndexRoute component={Weather}/>
   //   </Route>
   // </Router>
-  <p>Boilerplate project</p>,
+  <TodoApp />,
   document.getElementById('app')
 );
