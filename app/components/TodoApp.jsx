@@ -1,35 +1,23 @@
 var React = require('react');
 var uuid = require('node-uuid');
+
+var TodoAPI = require('TodoAPI');
 var TodoList = require('TodoList');
 var AddTodo = require('AddTodo');
 var TodoSearch = require('TodoSearch');
 
 var TodoApp = React.createClass({
 
-    getInitialState: function() {
+    getInitialState: function() {               //React function for initialising state
         return {
-            showCompleted: false,
-            searchText: '',
-            todos: [
-                {
-                    id: uuid(),
-                    text: 'Walk the dog',
-                    completed: false
-                } , {
-                    id: uuid(),
-                    text: 'Clean the Yard',
-                    completed: true
-                } , {
-                    id: uuid(),
-                    text: 'Call Mom',
-                    completed: true
-                } , {
-                    id: uuid(),
-                    text: 'Go shoping',
-                    completed: false
-                }
-            ]
-        }
+            showCompleted: false,               //default values - initial values
+            searchText: '',                     //default values - initial values
+            todos: TodoAPI.getTodos()           //Mockup data for initial state
+        };
+    },
+
+    componentDidUpdate: function(prevProps, prevState) {        //Life Cicle Function for Copmponent
+        TodoAPI.setTodos(this.state.todos);
     },
 
     handleSearch: function(showCompleted, searchText){
@@ -61,7 +49,6 @@ var TodoApp = React.createClass({
             }
             return todo;                                    //returns the modified todo which is the value of updatedTodos
         });
-
         this.setState({todos: updatedTodos});               //changed the value of the current state with the value of updatedTodos
     },
 
