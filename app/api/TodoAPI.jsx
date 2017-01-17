@@ -1,6 +1,6 @@
 module.exports = {
     setTodos: function(todos){
-        if( todos.constructor === Array){
+        if( Object.prototype.toString.call( todos ) === '[object Array]' ){
             localStorage.setItem('todos', JSON.stringify(todos));
             return todos;
         }
@@ -16,6 +16,6 @@ module.exports = {
             console.log(e);
         }
 
-        return (todos.constructor === Array) ? todos : [];
+        return (Object.prototype.toString.call( todos ) === '[object Array]' ) ? todos : [];
     }
 };
