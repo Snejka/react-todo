@@ -9,10 +9,16 @@ var TodoApp = React.createClass({
             todos: [
                 {
                     id: 1,
-                    text: 'walk the dog'
+                    text: 'Walk the dog'
                 } , {
                     id:2,
                     text: 'Clean the Yard'
+                } , {
+                    id:3,
+                    text: 'Call Mom'
+                } , {
+                    id:4,
+                    text: 'Go shoping'
                 }
             ]
         }

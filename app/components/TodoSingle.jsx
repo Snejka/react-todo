@@ -1,11 +1,12 @@
 var React = require('react');
 
 var TodoSingle = React.createClass({
-
     render: function () {
+        var {text, id} = this.props;
+
         return (
           <div>
-            TodoSingle.jsx
+            {id}. {text}
           </div>
         )
     }
