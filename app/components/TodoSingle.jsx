@@ -1,28 +1,14 @@
 var React = require('react');
 
-var TodoApp = React.createClass({
-
-    getInitialState: function() {
-        return {
-            todos: [
-                {
-                    id: 1,
-                    text: 'walk the dog'
-                } , {
-                    id:2,
-                    text: 'Clean the Yard'
-                }
-            ]
-        }
-    },
+var TodoSingle = React.createClass({
 
     render: function () {
         return (
           <div>
-            TodoApp.jsx
+            TodoSingle.jsx
           </div>
         )
     }
 });
 
-module.exports = TodoApp;
+module.exports = TodoSingle;
