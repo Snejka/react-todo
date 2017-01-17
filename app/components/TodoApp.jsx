@@ -13,16 +13,20 @@ var TodoApp = React.createClass({
             todos: [
                 {
                     id: uuid(),
-                    text: 'Walk the dog'
+                    text: 'Walk the dog',
+                    completed: false
                 } , {
                     id: uuid(),
-                    text: 'Clean the Yard'
+                    text: 'Clean the Yard',
+                    completed: true
                 } , {
                     id: uuid(),
-                    text: 'Call Mom'
+                    text: 'Call Mom',
+                    completed: true
                 } , {
                     id: uuid(),
-                    text: 'Go shoping'
+                    text: 'Go shoping',
+                    completed: false
                 }
             ]
         }
@@ -38,14 +42,27 @@ var TodoApp = React.createClass({
     handleAddTodo: function(todoText){
         // alert('New todo: '+todoText);
         this.setState({
-            todos: [
-                ...this.state.todos,
-                {
-                    id: uuid(),
-                    text: todoText
+            todos: [                    //creating new todos array
+                ...this.state.todos,    //copy the previews state from todos array
+                {                       //Adding the new object to the new totos array
+                    id: uuid(),         //generates unique id
+                    text: todoText,     //sets value of text to be the todoText from the input field
+                    completed: false    //sets completed to false for each new todo created - default
                 }
             ]
         })
+    },
+
+    handleToggle: function(id){
+        // alert(id);
+        var updatedTodos = this.state.todos.map((todo)=>{   //map through all values from todos
+            if(todo.id === id){                             //copmare the maped todo.id with the receved id
+                todo.completed = !todo.completed;           //changes the value of todo.completed with the oposite of the current value
+            }
+            return todo;                                    //returns the modified todo which is the value of updatedTodos
+        });
+
+        this.setState({todos: updatedTodos});               //changed the value of the current state with the value of updatedTodos
     },
 
     render: function () {
@@ -54,8 +71,8 @@ var TodoApp = React.createClass({
         // console.log(handleAddTodo);
         return (
           <div>
-            <TodoSearch onSearch={this.handleSearch}/>
-            <TodoList todos={todos}/>
+            <TodoSearch onSearch={this.handleSearch} />
+            <TodoList todos={todos} onToggle={this.handleToggle} />
             <AddTodo onAddTodo={this.handleAddTodo} />
           </div>
         )
