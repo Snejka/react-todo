@@ -1,6 +1,6 @@
 module.exports = {
     setTodos: function(todos){
-        if( Object.prototype.toString.call( todos ) === '[object Array]' ){
+        if( todos instanceof Array ){
             localStorage.setItem('todos', JSON.stringify(todos));
             return todos;
         }
@@ -16,6 +16,6 @@ module.exports = {
             console.log(e);
         }
 
-        return (Object.prototype.toString.call( todos ) === '[object Array]' ) ? todos : [];
+        return (todos instanceof Array) ? todos : [];
     }
 };
