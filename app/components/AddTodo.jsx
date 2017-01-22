@@ -13,7 +13,7 @@ var AddTodo = React.createClass({
         }
     },
     render: function() {
-        var {handleAddTodo} = this.props;
+        //var {handleAddTodo} = this.props;
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
