@@ -22,7 +22,7 @@ module.exports = {
     fileterTodos: function(todos, showCompleted, searchText){
         var filteredTodos = todos;
         //console.log(todos, showCompleted, searchText);
-        //console.log(filteredTodos);                           //Returns an array
+        //console.log(filteredTodos);                           //Returns an array with todos
 
         //filter by showCompleted
         filteredTodos = filteredTodos.filter((todo) => {
