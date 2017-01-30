@@ -38,7 +38,7 @@ var TodoApp = React.createClass({
                     id: uuid(),         //generates unique id
                     text: todoText,     //sets value of text to be the todoText from the input field
                     completed: false,   //sets completed to false for each new todo created - default
-                    createdAt: moment().unix(), 
+                    createdAt: moment().unix(),
                     completedAt: undefined,
                 }
             ]
@@ -64,12 +64,18 @@ var TodoApp = React.createClass({
         //console.log(todos);
         // console.log(handleAddTodo);
         return (
-          <div>
-            <h1 className="page-title">ToDo App</h1>
-            <TodoSearch onSearch={this.handleSearch} />
-            <TodoList todos={filteredTodos} onToggle={this.handleToggle} />
-            <AddTodo onAddTodo={this.handleAddTodo} />
-          </div>
+            <div>
+                <h1 className="page-title">ToDo App</h1>
+                <div className="row">
+                    <div className="column small-centered small-11 medium-6 large-5">
+                        <div className="container">
+                            <TodoSearch onSearch={this.handleSearch} />
+                            <TodoList todos={filteredTodos} onToggle={this.handleToggle} />
+                            <AddTodo onAddTodo={this.handleAddTodo} />
+                        </div>
+                    </div>
+                </div>
+            </div>
         )
     }
 });

@@ -8,8 +8,7 @@ require('style!css!foundation-sites/dist/css/foundation.min.css');
 $(document).foundation();
 
 //App css
-require('style!css!app/styles/app.css');
-require('style!css!appStyles');
+require('style!css!sass!appStyles');
 
 ReactDOM.render(
    <TodoApp />,

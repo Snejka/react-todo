@@ -10,7 +10,7 @@ var TodoSearch = React.createClass({
 
     render: function(){
         return (
-            <div>
+            <header className="container__header">
                 <div>
                     <input type="text" ref="searchText" placeholder="Search for Todos..." onChange={this.handleSearch}/>
                 </div>
@@ -20,7 +20,7 @@ var TodoSearch = React.createClass({
                         Show completed todos...
                     </lable>
                 </div>
-            </div>
+            </header>
         )
     }
 

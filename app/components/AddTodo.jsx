@@ -15,13 +15,13 @@ var AddTodo = React.createClass({
     render: function() {
         //var {handleAddTodo} = this.props;
         return (
-            <div>
+            <footer className="container__footer">
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" ref="todoText" placeholder="Add todo..." />
                     {/*ref='' id from react - allows us to access the value*/}
                     <button className="button expanded">Add</button>
                 </form>
-            </div>
+            </footer>
         )
     }
 });
