@@ -10,12 +10,12 @@ $(document).foundation();
 //App css
 require('style!css!sass!appStyles');
 
-ReactDOM.render(
-   <TodoApp />,
-  document.getElementById('app')
-);
+// ReactDOM.render(
+//    <TodoApp />,
+//   document.getElementById('app')
+// );
 
-//require('./redux-example.jsx');
+// require('./redux-example.jsx');
 
 require('./redux-todo-example.jsx');
 

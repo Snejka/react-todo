@@ -21,16 +21,26 @@ const reducer = (state = stateDefault, action) => {
     }
 }
 
-const store = redux.createStore(reducer);
+const store = redux.createStore(reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+//Subscribe to changes
+store.subscribe(() => {
+    let state = store.getState();
+    console.log('New State is: ', state.searchText);
+    document.getElementById('app').innerHTML = state.searchText;
+});
 
 const curentState = store.getState();
 console.log(curentState);
 
-const changeSerchText = {
+store.dispatch({
     type: 'CHANGE_SEARCH_TEXT',
     searchText: 'New Search Text'
-}
+});
 
-store.dispatch(changeSerchText);
-
-console.log('New State', store.getState());
+store.dispatch({
+    type: 'CHANGE_SEARCH_TEXT',
+    searchText: 'Another Search Text'
+});

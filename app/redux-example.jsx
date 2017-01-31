@@ -14,21 +14,33 @@ var reducer = (state = {name: 'Anonymos'}, action) => {
             name: action.name
         };
         default:
-            return state;
-    }                                         //Always return the state
+            return state; //Always return the state
+    }
 }
 
-var store = redux.createStore(reducer);
+const store = redux.createStore(reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+//Subscribe to changes
+var unsubscribe = store.subscribe(() => {
+    let state = store.getState();
+    console.log('Name is: ',state.name);
+    document.getElementById('app').innerHTML = state.name;
+});
+// unsubscribe();
 
 var currentState = store.getState();
 console.log ('Current State', currentState);
 
 
-const action = {
+store.dispatch({
     type: 'CHANGE_NAME',
     name: 'Snezhana'
-};
+});
 
-store.dispatch(action);
 
-console.log('Name should be changed', store.getState());
+store.dispatch({
+    type: 'CHANGE_NAME',
+    name: 'Jane'
+});
