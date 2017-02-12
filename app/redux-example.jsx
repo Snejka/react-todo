@@ -1,4 +1,5 @@
-var redux = require('redux');
+const redux = require('redux');
+const axios = require('axios');
 
 console.log('Starting redux Example');
 
@@ -91,12 +92,56 @@ const removeMovie = (id) => {
     }
 }
 
+//Map Reducer
+//-------------------------------------
+const mapReducer = (state = { isFatching: false, url: undefined }, action) => {
+    switch (action.type){
+        case 'START_LOCATION_FETCH':
+            return{
+                isFetching: true,
+                url: undefined
+            };
+        case 'COMPLETE_LOCATION_FETCH':
+            return {
+                isFetching: false,
+                url: action.url
+            };
+        default:
+            return state;
+    }
+}
+
+const startLocationFetch = () => {
+    return {
+        type: 'START_LOCATION_FETCH',
+    }
+}
+
+const comleteLocationFetch = (url) => {
+    return {
+        type: 'COMPLETE_LOCATION_FETCH',
+        url
+    }
+}
+
+const fetchLocation = () => {
+    store.dispatch(startLocationFetch());
+
+    axios.get('http://ipinfo.io').then(function (res) {
+        let loc = res.data.loc;
+        let url = 'https://maps.google.com?q=';
+
+        store.dispatch(comleteLocationFetch(url + loc));
+    });
+};
+
 //Combine Reducer into one Store Object
 //-------------------------------------
 const reducer = redux.combineReducers({
     name: nameReducer,
     hobbies: hobbyReducer,
-    movies: movieReducer
+    movies: movieReducer,
+    map: mapReducer
 })
 
 const store = redux.createStore(reducer,
@@ -107,15 +152,21 @@ const store = redux.createStore(reducer,
 //-------------------------------------
 var unsubscribe = store.subscribe(() => {
     let state = store.getState();
-    console.log('Name is: ',state.name);
-    document.getElementById('app').innerHTML = state.name;
     console.log ('Current State', state);
+
+    if(state.map.isFetching){
+        document.getElementById('app').innerHTML = 'Loading...';
+    } else if (state.map.url){
+        document.getElementById('app').innerHTML = '<a href="'+ state.map.url +'" target="_blank">View your location</a>'
+    }
 
 });
 
 
 //Action dispatchers
 //-------------------------------------
+fetchLocation();
+
 store.dispatch(changeName('Snezhana'));
 
 store.dispatch(changeName('Jane'));
