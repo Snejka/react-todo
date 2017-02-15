@@ -1,22 +1,20 @@
-const redux = require('redux');
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-const {nameReducer, hobbyReducer, movieReducer, mapReducer} = require('./../reducers/index');
+import {nameReducer, hobbyReducer, movieReducer, mapReducer} from './../reducers/index';
 
 export const configure = () => {
-	//Combine Reducer into one Store Object
-	//-------------------------------------
-	const reducer = redux.combineReducers({
+
+	const reducer = combineReducers({
 	    name: nameReducer,
 	    hobbies: hobbyReducer,
 	    movies: movieReducer,
 	    map: mapReducer
 	})
 
-	const store = redux.createStore(reducer, redux.compose(
+	const store = createStore(reducer, compose(
 		applyMiddleware(thunk),
 	    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-		)		
+		)
 	);
 
 	return store;
