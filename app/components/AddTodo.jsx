@@ -1,19 +1,23 @@
-var React = require('react');
+import React from 'react';
+import {connect} from 'react-redux';
+const actions = require('actions');
 
-var AddTodo = React.createClass({
+export const AddTodo = React.createClass({
+
     handleSubmit: function(e){
         e.preventDefault();
-        var todoText = this.refs.todoText.value;
+        const todoText = this.refs.todoText.value;
+        const {dispatch} = this.props;
 
         if(todoText.length > 0){
             this.refs.todoText.value = '';
-            this.props.onAddTodo(todoText);
+            dispatch(actions.addTodo(todoText));
         } else {
             this.refs.todoText.focus();//Leave teh cursur inside the input text
         }
     },
     render: function() {
-        //var {handleAddTodo} = this.props;
+        //const {handleAddTodo} = this.props;
         return (
             <footer className="container__footer">
                 <form onSubmit={this.handleSubmit}>
@@ -26,4 +30,4 @@ var AddTodo = React.createClass({
     }
 });
 
-module.exports = AddTodo;
+export default connect()(AddTodo);

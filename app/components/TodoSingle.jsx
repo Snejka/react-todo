@@ -1,13 +1,20 @@
-var React = require('react');
-var moment = require('moment');
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+const actions = require('actions');
+const moment = require('moment');
 
-var TodoSingle = React.createClass({
-    render: function () {
-        var {text, id, completed, createdAt, completedAt} = this.props;
-        var todoClassName = completed ? 'todo todo-completed' : 'todo';
-        var renderDate = () => {
-            var timestamp = createdAt;
-            var message = 'Created ';
+export class TodoSingle extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const {text, id, completed, createdAt, completedAt, dispatch} = this.props;
+        const todoClassName = completed ? 'todo todo-completed' : 'todo';
+        const renderDate = () => {
+            let timestamp = createdAt;
+            let message = 'Created ';
 
             if(completed){
                 timestamp = completedAt;
@@ -18,7 +25,7 @@ var TodoSingle = React.createClass({
         }
 
         return (
-            <div className={todoClassName} onClick={ () => {this.props.onToggle(id)}}>
+            <div className={todoClassName} onClick={ () => {dispatch(actions.toggleTodo(id))}}>
                 { /*pass the value of id to the onToggle property*/}
                 <div>
                     <input  type="checkbox" checked={completed} />
@@ -30,6 +37,6 @@ var TodoSingle = React.createClass({
           </div>
         )
     }
-});
+}
 
-module.exports = TodoSingle;
+export default connect()(TodoSingle);

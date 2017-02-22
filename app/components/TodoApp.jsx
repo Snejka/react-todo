@@ -1,12 +1,11 @@
-var React = require('react');
-var uuid = require('node-uuid');
+import React from 'react';
+import uuid from 'node-uuid';
+import moment from 'moment';
 
-var TodoList = require('TodoList');
-var AddTodo = require('AddTodo');
+import TodoList from 'TodoList';
+import AddTodo from 'AddTodo';
 var TodoSearch = require('TodoSearch');
 var TodoAPI = require('TodoAPI');
-
-var moment = require('moment');
 
 var TodoApp = React.createClass({
 
@@ -45,18 +44,6 @@ var TodoApp = React.createClass({
         })
     },
 
-    handleToggle: function(id){
-        // alert(id);
-        var updatedTodos = this.state.todos.map((todo)=>{   //map through all values from todos
-            if(todo.id === id){                             //copmare the maped todo.id with the receved id
-                todo.completed = !todo.completed;           //changes the value of todo.completed with the oposite of the current value
-                todo.completedAt = todo.completed ? moment().unix() : undefined;
-            }
-            return todo;                                    //returns the modified todo which is the value of updatedTodos
-        });
-        this.setState({todos: updatedTodos});               //changed the value of the current state with the value of updatedTodos
-    },
-
     render: function () {
         var {todos, showCompleted, searchText} = this.state;
         //console.log(todos, showCompleted, searchText);
@@ -70,7 +57,7 @@ var TodoApp = React.createClass({
                     <div className="column small-centered small-11 medium-6 large-5">
                         <div className="container">
                             <TodoSearch onSearch={this.handleSearch} />
-                            <TodoList todos={filteredTodos} onToggle={this.handleToggle} />
+                            <TodoList/>
                             <AddTodo onAddTodo={this.handleAddTodo} />
                         </div>
                     </div>
