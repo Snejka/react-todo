@@ -1,7 +1,18 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var {Route, Router, IndexRoute, hashHistory} = require('react-router');
-var TodoApp = require('TodoApp');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Route, Router, IndexRoute, hashHistory} from 'react-router';
+import TodoApp from 'TodoApp';
+
+const actions = require('actions');
+const store = require('configureStore').configure();
+
+store.subscribe(() => {
+    console.log('New State', store.getState())
+});
+
+store.dispatch(actions.addTodo('Clean the yard'));
+store.dispatch(actions.setSearchText('yard'));
+store.dispatch(actions.toggleShowCompleted());
 
 //Load Foundation
 require('style!css!foundation-sites/dist/css/foundation.min.css');
