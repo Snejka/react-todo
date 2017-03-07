@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
-var TodoSearch = require('TodoSearch');
+import TodoSearch from 'TodoSearch';
 var TodoAPI = require('TodoAPI');
 
 var TodoApp = React.createClass({
@@ -47,7 +47,7 @@ var TodoApp = React.createClass({
     render: function () {
         var {todos, showCompleted, searchText} = this.state;
         //console.log(todos, showCompleted, searchText);
-        var filteredTodos= TodoAPI.fileterTodos(todos, showCompleted, searchText);
+        var filteredTodos = TodoAPI.fileterTodos(todos, showCompleted, searchText);
         //console.log(todos);
         // console.log(handleAddTodo);
         return (
