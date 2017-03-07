@@ -5,6 +5,7 @@ import {Provider} from 'react-redux';
 import TodoApp from 'TodoApp';
 var TodoAPI = require('TodoAPI');
 
+import './playground/index';
 
 const actions = require('actions');
 const store = require('configureStore').configure();
