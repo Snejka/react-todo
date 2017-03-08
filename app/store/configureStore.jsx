@@ -1,5 +1,6 @@
-import { combineReducers, createStore, compose } from 'redux';
+import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import { searchTextReducer, todosReducer, showCompletedReducer } from 'reducers';
+import thunk from 'redux-thunk'; //middelware
 
 export const configure = (initialState ={}) => {
     const reducer = combineReducers({
@@ -12,6 +13,7 @@ export const configure = (initialState ={}) => {
         reducer,
         initialState,
         compose(
+            applyMiddleware(thunk),
             window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
         )
     );
