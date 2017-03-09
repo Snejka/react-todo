@@ -25,7 +25,9 @@ export class TodoSingle extends Component {
         }
 
         return (
-            <div className={todoClassName} onClick={ () => {dispatch(actions.toggleTodo(id))}}>
+            <div className={todoClassName} onClick={ () => {
+                dispatch(actions.startToggleTodo(id, !completed));
+            }}>
                 { /*pass the value of id to the onToggle property*/}
                 <div>
                     <input  type="checkbox" checked={completed} />

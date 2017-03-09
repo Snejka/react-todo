@@ -5,23 +5,10 @@ import {Provider} from 'react-redux';
 import TodoApp from 'TodoApp';
 var TodoAPI = require('TodoAPI');
 
-import './playground/index';
-
 const actions = require('actions');
 const store = require('configureStore').configure();
 
-store.subscribe(() => {
-    const state = store.getState();
-    console.log('New State', state);
-    TodoAPI.setTodos(state.todos);
-});
-
-const initialTodos = TodoAPI.getTodos();
-store.dispatch(actions.addTodos(initialTodos));
-
-// store.dispatch(actions.addTodo('Clean the yard'));
-// store.dispatch(actions.setSearchText('yard'));
-// store.dispatch(actions.toggleShowCompleted());
+store.dispatch(actions.startAddTodos());
 
 //Load Foundation
 require('style!css!foundation-sites/dist/css/foundation.min.css');
