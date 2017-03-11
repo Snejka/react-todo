@@ -1,4 +1,4 @@
-import firevase, {firebaseRef} from 'app/firebase/';
+import firebase, {firebaseRef} from 'app/firebase/';
 import moment from 'moment';
 
 export const setSearchText = (searchText) => {
