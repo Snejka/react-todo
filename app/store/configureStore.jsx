@@ -14,14 +14,5 @@ export const configure = (initialState = {}) => {
         applyMiddleware(thunk)
     ));
 
-    // const store = createStore(
-    //     reducer,
-    //     initialState,
-    //     compose(
-    //         applyMiddleware(thunk),
-    //         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    //     )
-    // );
-
     return store;
 }

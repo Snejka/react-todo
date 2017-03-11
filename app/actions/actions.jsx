@@ -26,7 +26,6 @@ export const startAddTodo = (text) => {
                 };
 
         const todoRef = firebaseRef.child('todos').push(todo);
-        console.log("Start Add ToDo", todoRef);
         
         return todoRef.then(() => {
             dispatch(addTodo({
