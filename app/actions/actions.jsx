@@ -1,4 +1,4 @@
-import firebase, {firebaseRef} from 'app/firebase/';
+import firebase, {firebaseRef} from 'app/firebase/index';
 import moment from 'moment';
 
 export const setSearchText = (searchText) => {
@@ -17,8 +17,8 @@ export const addTodo = (todo) => {
 
 export const startAddTodo = (text) => {
     return (dispatch, getState) => {
-        //Creating our todo and adding it to firebase
-        const todo = {
+        
+        let todo = {
                     text,
                     completed: false,
                     createdAt: moment().unix(),
@@ -26,12 +26,13 @@ export const startAddTodo = (text) => {
                 };
 
         const todoRef = firebaseRef.child('todos').push(todo);
-        //Updates the Redux store
+        console.log("Start Add ToDo", todoRef);
+        
         return todoRef.then(() => {
             dispatch(addTodo({
                 ...todo,
                 id: todoRef.key
-            }))
+            }));
         });
     };
 };
@@ -48,6 +49,7 @@ export const startAddTodos = () => {
     return (dispatch, getState) => {
 
         const todosRef = firebaseRef.child('todos');
+        
         return todosRef.once('value').then((snapshot) => {
             const todos = snapshot.val() || {};
             const parsedTodos = [];

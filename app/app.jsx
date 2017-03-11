@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 import {Provider} from 'react-redux';
-import TodoApp from 'TodoApp';
-var TodoAPI = require('TodoAPI');
+import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 
+import TodoApp from 'TodoApp';
 const actions = require('actions');
 const store = require('configureStore').configure();
 

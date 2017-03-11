@@ -18,11 +18,12 @@ module.exports = {
         'jQuery': 'jquery'
         //key : kalue
     }),
-    new webpack.optimize.UglifyJsPlugin({
-        compressor: {
-            warnings: false
-        }
-    })
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin()
   ],
   output: {
     path: __dirname,
@@ -36,7 +37,7 @@ module.exports = {
       './app/api',
     ],
     alias: {
-        app: 'app',
+      app: 'app',
       appStyles: 'app/styles/app.scss',
       actions: 'app/actions/actions.jsx',
       reducers: 'app/reducers/reducers.jsx',
