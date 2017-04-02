@@ -1,6 +1,6 @@
 {
   "name": "boilerplate",
-  "version": "1.0.140",
+  "version": "1.0.142",
   "description": "Simple react app",
   "main": "index.js",
   "scripts": {
